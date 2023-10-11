@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Word Edit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <h2>Edit Word</h2>
+    <form id="wordEditForm">
+        <div class="form-group">
+            <label for="wordEdit">Word:</label>
+            <input type="text" class="form-control" id="wordEdit" required>
+        </div>
+        <div class="form-group">
+            <label for="levelEdit">Level:</label>
+            <input type="text" class="form-control" id="levelEdit" required>
+        </div>
+        <div class="form-group">
+            <label for="meaningEdit">Meaning:</label>
+            <input type="text" class="form-control" id="meaningEdit" required>
+        </div>
+        <div class="form-group">
+            <label for="dateEdit">Date:</label>
+            <input type="date" class="form-control" id="dateEdit" required>
+        </div>
+        <button type="submit" class="btn btn-primary">수정</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid text-center">
+    <p>Let's be the word master</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    function getQueryParam(param) {
+        let searchParams = new URLSearchParams(window.location.search);
+        return searchParams.get(param);
+    }
+
+    // Populate the form with the details from view.html
+    document.getElementById('wordEdit').value = getQueryParam('word');
+    document.getElementById('levelEdit').value = getQueryParam('level');
+    document.getElementById('meaningEdit').value = getQueryParam('meaning');
+    document.getElementById('dateEdit').value = getQueryParam('date');
+
+    // Validation and confirmation
+    document.getElementById("wordEditForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        var r = confirm("게시물을 수정할까요?");
+        if (r == true) {
+            alert("게시물이 수정되었습니다.");
+            window.location.href = "index.html";
+        }
+    });
+</script>
+
+</body>
+</html>
